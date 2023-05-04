@@ -36,29 +36,12 @@ function todosGenerator(todosList) {
     todoListElem.innerHTML = ''
 
     todosList.forEach(function (todo) {
-        newTodoLiElem = $.createElement('li')
-        newTodoLiElem.className = 'completed well'
-
-        newTodoLabelElem = $.createElement('label')
-        newTodoLabelElem.innerHTML = todo.title
-
-        newTodoCompleteBtn = $.createElement('button')
-        newTodoCompleteBtn.className = 'btn btn-success'
-        newTodoCompleteBtn.innerHTML = 'Complete'
-        newTodoCompleteBtn.setAttribute('onclick', 'editTodo(' + todo.id + ')')
-
-        newTodoDeleteBtn = $.createElement('button')
-        newTodoDeleteBtn.className = 'btn btn-danger'
-        newTodoDeleteBtn.innerHTML = 'Delete'
-        newTodoDeleteBtn.setAttribute('onclick', 'removeTodo(' + todo.id + ')')
+        todoListElem.insertAdjacentHTML('beforeend', '<li class="completed well"><label>' + todo.title + '</label><button class="btn btn-success" onclick="editTodo(' + todo.id + ')">Complete</button><button class="btn btn-danger" onclick="removeTodo(' + todo.id + ')">Delete</button></li>')
 
         if (todo.complete) {
             newTodoLiElem.className = 'uncompleted well'
             newTodoCompleteBtn.innerHTML = 'UnComplete'
         }
-
-        newTodoLiElem.append(newTodoLabelElem, newTodoCompleteBtn, newTodoDeleteBtn)
-        todoListElem.append(newTodoLiElem)
     })
 }
 
